@@ -34,9 +34,9 @@
       <xs:element minOccurs="0" maxOccurs="1" name="UEN" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="Address" type="address_pf8" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Citizenship" type="Nationality" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Country" type="CountryCode" />
-      <xs:element minOccurs="1" maxOccurs="1" name="IsSgResident" default="false" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Citizenship" type="Nationality" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Country" type="CountryCode" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsSgResident"  />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="address_pf8">

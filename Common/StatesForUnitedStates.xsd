@@ -2,6 +2,11 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
   <xs:simpleType name="StatesForUnitedStates">
     <xs:restriction base="xs:string">
+      <xs:enumeration value="None">
+        <xs:annotation>
+          <xs:documentation>None</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
       <xs:enumeration value="AB">
         <xs:annotation>
           <xs:documentation>Alabama</xs:documentation>

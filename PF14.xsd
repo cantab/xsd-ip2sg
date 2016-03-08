@@ -8,7 +8,7 @@
     <xs:sequence>
 	  <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="CustRefNbr" />
 	  <xs:element minOccurs="1" maxOccurs="1" name="ApplnNo" type="ApplnNbr" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TitleOfInvention" type="TitleOfInvention" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TitleOfInvention" type="TitleOfInvention" />
 	  <xs:element minOccurs="0" maxOccurs="unbounded" ref="Applicant" />
 	  <xs:element minOccurs="1" maxOccurs="1" ref="AddressForService" />
       <xs:element minOccurs="0" maxOccurs="1" name="NumberofClaims" type="xs:integer" />

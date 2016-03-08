@@ -21,7 +21,7 @@
       <xs:element name="Name" type="xs:string" maxOccurs="1" minOccurs="0" />
 
 
-      <xs:element name="IsSME" type="xs:boolean" default="false" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="IsSME" type="xs:boolean" nillable="true" maxOccurs="1" minOccurs="0"/>
       <xs:element name="CountryOfIncorporation" type="CountryOfIncorporation"  maxOccurs="1" minOccurs="0"/>
       <xs:element name="StateofIncorporation" type="StatesForUnitedStates" maxOccurs="1" minOccurs="0"/>
       <xs:element name="SoleProprietororPartnersNames"  type="xs:string" maxOccurs="1" minOccurs="0"/>
