@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:include schemaLocation="Common/Applicant.xsd" />
+  <xs:include schemaLocation="Common/AddressForService.xsd" />
+  <xs:include schemaLocation="Common/CommonTypes.xsd" />
+  <xs:element name="eFilingApplication" type="CM8" />
+  <xs:complexType name="CM8">
+    <xs:sequence>
+      <!-- Part 1 IPOS Reference Applicant Agent Reference-->
+      <!-- <xs:element minOccurs="0" maxOccurs="1" name="IPOSRefNbr" type="IPOSRefNbr" /> -->
+      <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="CustRefNbr" />
+      <!-- Part 2 Application No-->
+      <xs:element minOccurs="1" maxOccurs="50" name="ApplicationNo">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="15"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <!-- Part 3 Not necessary because it is auto populating-->
+      <!-- Part 4 Full or Partial Transfer-->
+      <xs:element minOccurs="0" maxOccurs="1" name="IsFullTransferForTradeMarkIP" type="xs:boolean"/>
+      <!-- Part 5 Details of Current Applicant Proprietor -->
+      <xs:element minOccurs="1" maxOccurs="unbounded" name="CurrentApplicantProprietor" type="Applicant"/>
+      <!-- Part 6 Details of Subsequent Applicant Proprietor-->
+      <xs:element minOccurs="1" maxOccurs="unbounded" name="SubsequentApplicantProprietor" type="Applicant"/>
+      <!-- Part 7 Scope of Transfer-->
+      <xs:element minOccurs="0" maxOccurs="unbounded" name ="ScopeOfTransfer">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name ="SubsequentProprietor">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="1" maxOccurs="unbounded" name ="UEN" type="xs:string" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name ="TrademarkApplication">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" maxOccurs="unbounded" name ="Class" type="Class"/>
+                </xs:sequence>
+                <xs:attribute name="ApplnNbr" type="xs:string" use="required" />
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!-- Part 7 Date of Transfer of Ownership-->
+      <xs:element minOccurs="1" maxOccurs="1" name="DateOfTransferOfOwnership" type="xs:date" />
+      <!-- Part 8 Details of Transfer of Ownership to be Registered-->
+      <xs:element minOccurs="0" maxOccurs="1" name="DetailsOfTransfer" >
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="1000"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <!-- Part 9 -->
+      <xs:element minOccurs="1" maxOccurs="1" name="AuthorisedAgent">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="For All Matters" />
+            <xs:enumeration value="For Transfer of Ownership Only" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="AddressForServiceForPart9" type="AddressForService" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AddressForServiceForPart13" type="AddressForService" />
+      <!-- Part 10 should not be part of XML as it might required Sing Pass validation-->
+      <!-- Part 11 Declaration -->
+      <xs:element name="RequestorType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Current Proprietor" />
+            <xs:enumeration value="Subsequent Proprietor" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="DeclarationName" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="Attachments" />
+    </xs:sequence>
+    <xs:attribute name="formType" type="xs:string" fixed="CM8" use="required" />
+  </xs:complexType>
+  <!-- Class Object for Part 7 Scope of Transfer-->
+  <xs:complexType name="Class">
+    <xs:sequence>
+      <xs:element name="Transfer">
+        <xs:complexType>
+          <xs:choice>
+            <xs:element name="FullClassTransfer" type="xs:boolean" fixed="true"/>
+            <xs:element name="PartialClassTransfer">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="PartialTransferType">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="Goods/Services" />
+                        <xs:enumeration value="Rights" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="FreeText" type="xs:string" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="Nbr" type="xs:int" use="required" />
+  </xs:complexType>
+  <!--Part 12 Attachments-->
+  <xs:complexType name="Attachments">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="attachment" type="CM8attachment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CM8attachment">
+    <xs:attribute name="Id" type="xs:string" />
+    <xs:attribute name="extension" type="CM8extension" use="required" />
+    <xs:attribute name="doctypecode" type="CM8doctype" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="CM8extension">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value=".avi" />
+      <xs:enumeration value=".bmp" />
+      <xs:enumeration value=".doc" />
+      <xs:enumeration value=".docx" />
+      <xs:enumeration value=".gif" />
+      <xs:enumeration value=".jpeg" />
+      <xs:enumeration value=".mp3" />
+      <xs:enumeration value=".mp4" />
+      <xs:enumeration value=".mpeg" />
+      <xs:enumeration value=".pdf" />
+      <xs:enumeration value=".tiff" />
+      <xs:enumeration value=".wav" />
+      <xs:enumeration value=".wmv" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CM8doctype">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DocEvid" />
+      <xs:enumeration value="XRCVL" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:include schemaLocation="Common/AddressForService.xsd" />
+  <xs:include schemaLocation="Common/CommonTypes.xsd" />
+  <xs:include schemaLocation="Common/CountryOfIncorporation.xsd" />
+  <xs:include schemaLocation="Common/Nationality.xsd" />
+  
+  <xs:element name="eFilingApplication" type="CM2" />
+  <xs:complexType name="CM2">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="xs:string" />
+      <!-- <xs:element minOccurs="0" maxOccurs="1" name="IPOSReferenceNbr" type="xs:string" /> -->
+
+      <xs:element name="ChangeInRelationTo" default ="Agent" >
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Agent"/>
+            <xs:enumeration value="Applicant"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      
+      <xs:element name="UEN" type="xs:string" maxOccurs="1" minOccurs="1"/>
+
+      <xs:element minOccurs="0" maxOccurs="1" name="ChangeRequestType" type="ChangeRequestType" />
+      
+      <xs:element minOccurs="0" maxOccurs="1" name="ChangeInRelationToAllIP" type="xs:boolean" default="1"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ApplnNo" type="xs:string" />
+
+      <xs:element minOccurs="0" maxOccurs="1" name="ChangeName" type="ChangeName" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ChangeAddress" type="ChangeAddress" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ChangeNationality" type="ChangeNationality" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ChangeCountryofResidency" type="ChangeCountryofResidency" />
+
+      
+      <xs:element minOccurs="0" maxOccurs="1" name="IsAFSChange" type="xs:boolean" default="0"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ChangeofAddressforServiceinSingapore" type="ChangeofAddressforServiceinSingapore" />
+      
+      
+
+      <xs:element minOccurs="0" maxOccurs="1" name="EffectiveDate" type="xs:date" />
+
+      <xs:element minOccurs="1" maxOccurs="1" ref="AddressForService" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="DeclarationName" />
+      
+    </xs:sequence>
+    <xs:attribute name="formType" type="formtype_CM2" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="ChangeRequestType">
+    <xs:sequence>
+      <xs:element  name="Name" type="xs:boolean" />
+      <xs:element  name="Address" type="xs:boolean" />
+      <xs:element  name="Nationality" type="xs:boolean" />
+      <xs:element  name="CountryOfResidence" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ChangeofAddressforServiceinSingapore">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ChangeInRelationToAllIP" type="xs:boolean" default="1"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ChangeByApplnoSelectionAFS" type="ChangeByApplnoSelectionAFS" />
+
+      <xs:element name="PostalCode" maxOccurs="1" minOccurs="0" >
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:length value="6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="BlockHouseNo" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="10"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Level" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="UnitNo" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="BuildingName" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="StreetName"  maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="90"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ChangeName">
+    <xs:sequence>
+      <xs:element  name="NewName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ChangeAddress">
+    <xs:sequence>
+      <xs:element name="AddressType" default ="Singapore" >
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Singapore"/>
+            <xs:enumeration value="Foreign"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="PostalCode" maxOccurs="1" minOccurs="0" >
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:length value="6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="BlockHouseNo" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="10"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Level" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="UnitNo" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="BuildingName" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="StreetName"  maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="90"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="Address1"  maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="200"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Address2"  maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="200"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="Address3"  maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="200"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+
+
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ChangeNationality">
+    <xs:sequence>
+      <xs:element  name="NewNationality" type="Nationality" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ChangeCountryofResidency">
+    <xs:sequence>
+      <xs:element  name="NewCountryofResidency" type="CountryOfIncorporation" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ChangeByApplnoSelectionAFS" >
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ApplnNo" type="ApplnNbr" />
+      <xs:element name="XRAFSACTIONTYPE" minOccurs="1" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="AMD">
+              <xs:annotation>
+                <xs:documentation>Amendment (mark, design, specifications etc)</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="REV">
+              <xs:annotation>
+                <xs:documentation>For all matters on behalf of the Initiator for revocation, invalidation or rectification or opposition or others</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="OPP">
+              <xs:annotation>
+                <xs:documentation>For all matters on behalf of the Respondent for revocation, invalidation or rectification or opposition or others</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="REG">
+              <xs:annotation>
+                <xs:documentation>For all matters relating to the application, registration/grant, except those matters expressly excluded </xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="MM2">
+              <xs:annotation>
+                <xs:documentation>Form MM2(E) (for Trade Marks)</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="INT">
+              <xs:annotation>
+                <xs:documentation>Intervention by third parties</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="MMF">
+              <xs:annotation>
+                <xs:documentation>Other MM Forms except MM1, MM2, MM3, MM16, MM17 and MM18 (for Trade Marks)</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="LIC">
+              <xs:annotation>
+                <xs:documentation>Registration / Amendment / Termination of Licence</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="SEC">
+              <xs:annotation>
+                <xs:documentation>Registration / Amendment / Termination of Security Interest</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="REN">
+              <xs:annotation>
+                <xs:documentation>Renewal</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="RENREG">
+              <xs:annotation>
+                <xs:documentation>Renewal and all matters relating to registration / grant</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="SUR">
+              <xs:annotation>
+                <xs:documentation>Surrender / Cancellation / Partial Cancellation</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TOO">
+              <xs:annotation>
+                <xs:documentation>Transfer of ownership</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>  
+
+  <xs:simpleType name="formtype_CM2">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CM2" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
