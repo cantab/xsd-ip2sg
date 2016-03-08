@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:include schemaLocation="Common/Applicant.xsd" />
+  <xs:include schemaLocation="Common/AddressForService.xsd" />
+  <xs:include schemaLocation="Common/CommonTypes.xsd" />
+  <xs:include schemaLocation="Common/CountryDSPriority.xsd" />
+  <xs:element name="eFilingApplication" type="D3" />
+  <xs:complexType name="D3">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="unbounded" ref="Applicant" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="CustRefNbr" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IRNbr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IRDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClassSubClass" type="ClassSubClass" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SetOfArticles" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NoOfArticles" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ArticleName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ApplicantRights" type="ApplicantRights" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ApplicantRightsOthersDesc">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="500">
+            </xs:maxLength>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Novelty" type="Novelty" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NoveltyOthersDesc">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="500">
+            </xs:maxLength>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Disclaimer" type="Disclaimer" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DisclaimerOthersDesc">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="500">
+            </xs:maxLength>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PriorityClaim" type="PriorityClaim" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AssociatedDesign" type="ApplnNbr" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Disclosure" type="Disclosure" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DisclosureCircumstances">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="500">
+            </xs:maxLength>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="DisclosureDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequestForDeferment" type="xs:boolean" />      
+      <xs:element minOccurs="0" maxOccurs="1" ref="AddressForService" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DeclarationName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="Attachments" />
+    </xs:sequence>
+    <xs:attribute name="formType" type="formtypeD3" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ClassSubClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="class" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="subclass" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ApplicantRights">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ApplicantCommissioned" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ApplicantDesigner" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VirtueAssignment" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VirtueEmployment" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ApplicantOthers" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Novelty">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Novelty" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Shape" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Pattern" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NoveltyOthers" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Disclaimer">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="NoClaim" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Characters" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Letters" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Numerals" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Symbols" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Trademarks" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Words" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BrokenLines" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ShadedPortions" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DisclaimerOthers" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PriorityClaim">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="PriorityCountryCode" type="DSPriorityCountry" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PriorityDate" type="xs:date" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Disclosure">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Disclosure81a" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Disclosure81b" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Disclosure81c" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Disclosure81d" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Disclosure82" type="xs:boolean" />      
+    </xs:sequence>
+  </xs:complexType>  
+  <xs:simpleType name="formtypeD3">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="D3" />
+    </xs:restriction>
+  </xs:simpleType>  
+  <xs:complexType name="Attachments">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="unbounded" name="attachment" type="attachmentD3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="attachmentD3">
+    <xs:attribute name="Id" type="xs:string" />
+    <xs:attribute name="extension" type="extensionD3" use="required" />
+    <xs:attribute name="doctypecode" type="doctypeD3" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="extensionD3">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value=".pdf" />
+      <xs:enumeration value=".jpg" />
+      <xs:enumeration value=".jpeg" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="doctypeD3">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RDCVL"/>
+      <xs:enumeration value="RDOTH"/>
+      <xs:enumeration value="RDPRD"/>
+      <xs:enumeration value="RDIMG"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

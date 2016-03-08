@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:include schemaLocation="Common/Applicant.xsd" />
+  <xs:include schemaLocation="Common/CommonTypes.xsd" />
+  <xs:include schemaLocation="Common/AddressForService.xsd" />
+  <xs:element name="eFilingApplication" type="PF15" />
+  <xs:complexType name="PF15">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AgentRefNbr" type="CustRefNbr" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ApplnNbr" type="ApplnNbr" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="Applicant" />
+      <xs:element minOccurs="1" maxOccurs="1" ref="AddressForService" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="DeclarationName" />
+    </xs:sequence>
+    <xs:attribute name="formType" type="FormTypePF15" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="FormTypePF15">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PF15" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

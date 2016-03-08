@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:include schemaLocation="Common/AddressForService.xsd" />
+  <xs:element name="eFilingApplication" type="D8" />
+  <xs:complexType name="D8">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ApplnNo" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" ref="AddressForService" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="Attachments" />      
+     </xs:sequence>
+    <xs:attribute name="formType" type="formtypeD8" use="required" />
+  </xs:complexType>  
+  <xs:simpleType name="formtypeD8">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="D8" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Attachments">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="attachment" type="attachmentD8" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="attachmentD8">
+    <xs:attribute name="Id" type="xs:string" />
+    <xs:attribute name="extension" type="extensionD8" use="required" />
+    <xs:attribute name="doctypecode" type="doctypeD8" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="extensionD8">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value=".pdf" />      
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="doctypeD8">
+    <xs:restriction base="xs:string">            
+      <xs:enumeration value="RDCVL"/>
+      <xs:enumeration value="RDOTH" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

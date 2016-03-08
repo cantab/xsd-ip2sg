@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:include schemaLocation="Common/Applicant.xsd" />
+  <xs:include schemaLocation="Common/AddressForService.xsd" />
+  <xs:include schemaLocation="Common/CommonTypes.xsd" />
+  <xs:include schemaLocation="Common/CountryPTPriority.xsd" />
+  <xs:element name="eFilingApplication" type="PF1" />
+  <xs:complexType name="PF1">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="CustRefNbr" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TitleOfInvention" type="TitleOfInvention" />
+      <xs:element minOccurs="1" maxOccurs="unbounded" ref="Applicant" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DeclarationOfPriority" type="DeclarationOfPriority" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EarlierSingaporeApplication" type="EarlierSingaporeApplication" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Inventors" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OtherInventors" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DisclosureofInvention" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MicroOrganism" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EarlierRelevantApplication" type="DeclarationOfPriority" />
+      <xs:element minOccurs="1" maxOccurs="1" ref="AddressForService" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="DeclarationName" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ChecklistA" type="ChecklistA" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ChecklistB" type="ChecklistB" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="PF1Attachments" />
+    </xs:sequence>
+    <xs:attribute name="formType" type="xs:string" fixed="PF1" use="required" />
+  </xs:complexType>
+  <xs:complexType name="DeclarationOfPriority">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="application" type="ApplnNbr" />
+      <xs:element minOccurs="1" maxOccurs="1" name="filingdate" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="country" type="PTPriorityCountry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EarlierSingaporeApplication">
+    <xs:choice minOccurs="1" maxOccurs="1">
+      <xs:element minOccurs="1" maxOccurs="1" name="Divisional" type="DivisionalApp" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OrderByRegistrar" type="DivisionalApp" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="DivisionalApp">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="application" type="ApplnNbr" />
+      <xs:element minOccurs="1" maxOccurs="1" name="filingdate" type="xs:date" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ChecklistA">
+    <xs:attribute name="Description" type="xs:int" />
+    <xs:attribute name="Claims" type="xs:int" />
+    <xs:attribute name="Drawings" type="xs:int" />
+    <xs:attribute name="Abstracts" type="xs:int" />
+  </xs:complexType>
+  <xs:complexType name="ChecklistB">
+    <xs:attribute name="StatementOfInventorship" type="xs:boolean" />
+    <xs:attribute name="InternationalExhibition" type="xs:boolean" />
+  </xs:complexType>
+  <xs:complexType name="PF1Attachments">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="attachment" type="PF1Attachment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PF1Attachment">
+    <xs:attribute name="Id" type="xs:string" />
+    <xs:attribute name="extension" type="PF1AttachmentExtension" use="required" />
+    <xs:attribute name="doctypecode" type="PF1AttachmentTypes" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="PF1AttachmentExtension">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value=".pdf" />
+      <xs:enumeration value=".tiff" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PF1AttachmentTypes">
+    <xs:restriction base="xs:string">
+     <xs:enumeration value="ABST" />
+      <xs:enumeration value="DWOC"/>
+      <xs:enumeration value="CVL"/>
+      <xs:enumeration value="DRW" />
+      <xs:enumeration value="DWC" />
+   </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

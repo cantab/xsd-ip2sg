@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:element name="AddressForService" type="AddressForService" />
+    <xs:complexType name="AddressForService">
+      <xs:sequence>
+        <xs:element name="IsAgent" type="xs:boolean" default="false" maxOccurs="1" minOccurs="0"/>
+        <xs:element name="RepresentativeName" type="xs:string" maxOccurs="1" minOccurs="0"/>
+        <xs:element name="NameOfContactPerson" type="xs:string" maxOccurs="1" minOccurs="0" />
+        <xs:element name="DirectTelephoneNo" type="xs:string"  maxOccurs="1" minOccurs="0"/>
+        <xs:element name="EmailAddress" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType> 
+</xs:schema>

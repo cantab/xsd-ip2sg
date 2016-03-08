@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+	<xs:include schemaLocation="Common/AddressForService.xsd" />
+	<xs:element name="eFilingApplication" type="PF12" />
+	<xs:complexType name="PF12">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="xs:string" />
+			<xs:element minOccurs="1" maxOccurs="1" name="ApplnNo" type="xs:string" />
+			<xs:element minOccurs="1" maxOccurs="1" name="TitleOfInvention" type="xs:string" />
+			<xs:element minOccurs="0" maxOccurs="1" name="RequestType" type="RequestType" />
+			<xs:element minOccurs="0" maxOccurs="1" name="PatentOffice" type="PatentOffice" />
+			<xs:element minOccurs="1" maxOccurs="1" name="IsAspec" type="xs:boolean" />
+			<xs:element minOccurs="1" maxOccurs="1" ref="AddressForService" />
+			<xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="xs:string" />
+			<xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="Attachments" />
+		</xs:sequence>
+		<xs:attribute name="formType" type="formtype_pf12" use="required" />
+	</xs:complexType>
+	<xs:complexType name="RequestType">
+		<xs:sequence>
+			<xs:element  name="ER1" type="xs:boolean" />
+			<xs:element  name="ER2" type="xs:boolean" />
+			<xs:element  name="ER3" type="xs:boolean" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PatentOffice">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="AppPatentNbr" type="xs:string" />
+			<xs:element minOccurs="0" maxOccurs="1" name="PatentOffice_DropDownList" type="PatentOffice_subvalue" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="PatentOffice_subvalue">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"></xs:minLength>
+			<xs:maxLength value="3"></xs:maxLength>
+			<xs:enumeration value="AU">
+				<xs:annotation>
+					<xs:documentation>Australia</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CA">
+				<xs:annotation>
+					<xs:documentation>Canada</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JP">
+				<xs:annotation>
+					<xs:documentation>Japan</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NZ">
+				<xs:annotation>
+					<xs:documentation>New Zealand</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KR">
+				<xs:annotation>
+					<xs:documentation>Republic of Korea</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GB">
+				<xs:annotation>
+					<xs:documentation>United Kingdom</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="US">
+				<xs:annotation>
+					<xs:documentation>United States of America</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EU">
+				<xs:annotation>
+					<xs:documentation>European Patent Office</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PCT">
+				<xs:annotation>
+					<xs:documentation>PCT</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="">
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Attachments">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="attachment" type="attachment_pf12" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="attachment_pf12">
+		<xs:attribute name="Id" type="xs:string" />
+		<xs:attribute name="extension" type="extension_pf12" use="required" />
+		<xs:attribute name="doctypecode" type="doctype_pf12" use="required" />
+	</xs:complexType>
+	<xs:simpleType name="extension_pf12">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=".pdf" />
+			<xs:enumeration value=".tiff" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="doctype_pf12">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ASPECCDC">
+				<xs:annotation>
+					<xs:documentation>ASPEC Cited Documents</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ASPECCLMCT" >
+				<xs:annotation>
+					<xs:documentation>ASPEC Claim Correspondence Table</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ASPECFRM" >
+				<xs:annotation>
+					<xs:documentation>ASPEC Request Form</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ASPECSERT" >
+				<xs:annotation>
+					<xs:documentation>ASPEC Search and Examination Report</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CDC" >
+				<xs:annotation>
+					<xs:documentation>Cited Documents</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CVL" >
+				<xs:annotation>
+					<xs:documentation>Cover Letter</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FSR" >
+				<xs:annotation>
+					<xs:documentation>Foreign Search Report</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IPRPI" >
+				<xs:annotation>
+					<xs:documentation>International Preliminary Report on Patentability Chapter I</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IPRPII" >
+				<xs:annotation>
+					<xs:documentation>International Preliminary Report on Patentability Chapter II</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ISR" >
+				<xs:annotation>
+					<xs:documentation>International Search Report</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SD" >
+				<xs:annotation>
+					<xs:documentation>Supporting Document(s)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="formtype_pf12">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PF12" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

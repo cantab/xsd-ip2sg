@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+	<xs:include schemaLocation="Common/AddressForService.xsd" />
+	<xs:include schemaLocation="Common/CountryTMPriority.xsd" />
+	<xs:element name="eFilingApplication" type="TM27" />
+	<xs:annotation>
+		<xs:documentation>Application to Amend a Trade Mark Application or Registration (Excluding Change of Name/ Address/ Address for Service) (TM27)</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="TM27">
+		<xs:sequence>
+			<xs:element name="ApplicantReferenceNo" minOccurs="0" maxOccurs="1" type="xs:string"/>
+			<xs:element name="ApplicationNo" minOccurs="0" maxOccurs="5" type="xs:string" />
+			<xs:element name="SpecificationOfGoodsServices" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ClassNo" minOccurs="1" type="xs:string"/>
+						<xs:element name="AmendedClassNo" minOccurs="1" type="xs:string"/>
+						<xs:element name="GoodsServices" minOccurs="1" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PriorityClaim" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ClassNo" minOccurs="0" type="xs:string"/>
+						<xs:element name="AmendedClassNo" minOccurs="0" type="xs:string"/>
+						<xs:element name="Country" type="TMPriorityCountry" minOccurs="1" maxOccurs="1" />
+						<xs:element name="PriorityDate" minOccurs="1" type="xs:date"/>
+						<xs:element name="AllGoodsServicesClaimed" minOccurs="1" type="xs:boolean"/>
+						<xs:element name="GoodsServicesClaimed" minOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="15000"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="NonConventionTradeMark" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ThreeDimensionalShape" type="xs:boolean"></xs:element>
+						<xs:element name="AspectOfPackaging" type="xs:boolean"></xs:element>
+						<xs:element name="ColourAsATradeMark" type="xs:boolean"></xs:element>
+						<xs:element name="SoundMark" type="xs:boolean"></xs:element>
+						<xs:element name="MovementMark" type="xs:boolean"></xs:element>
+						<xs:element name="HologramMark" type="xs:boolean"></xs:element>
+						<xs:element name="OtherNonConvMark" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DescriptionOfClaims" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="NumberOfMarksInSeries" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="MarkType" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Trade Mark"/>
+						<xs:enumeration value="Collective Mark"/>
+						<xs:enumeration value="Certification Mark"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DisclaimerLimitation" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="OtherAmendmentDetails" minOccurs="0" type="xs:string"/>
+			<xs:element minOccurs="0" maxOccurs="1" ref="AddressForService" />
+			<xs:element name="DeclarationName" minOccurs="0" maxOccurs="1" type="xs:string" />
+			<xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="TM27Attachments" />
+		</xs:sequence>
+		<xs:attribute name="formType" type="xs:string" fixed="TM27" use="required" />
+	</xs:complexType>
+	<xs:complexType name="TM27Attachments">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="attachment" type="TM27Attachment" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TM27Attachment">
+		<xs:attribute name="Id" type="xs:string" />
+		<xs:attribute name="extension" type="TM27AttachmentExtension" use="required" />
+		<xs:attribute name="doctypecode" type="TM27AttachmentTypes" use="required" />
+	</xs:complexType>
+	<xs:simpleType name="TM27AttachmentExtension">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=".doc" />
+			<xs:enumeration value=".docx" />
+			<xs:enumeration value=".pdf" />
+			<xs:enumeration value=".bmp" />
+			<xs:enumeration value=".jpg" />
+			<xs:enumeration value=".tif" />
+			<xs:enumeration value=".tiff" />
+			<xs:enumeration value=".jpeg" />
+	</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TM27AttachmentTypes">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TMTRANS"/>   <!--Certified Translation  Transliteration-->
+			<xs:enumeration value="TMCVL"/>     <!--Cover Letters-->
+			<xs:enumeration value="TMSDOCD"/>   <!--Documents to overcome citation-->
+			<xs:enumeration value="OTHERS"/>    <!--Others-->
+			<xs:enumeration value="TMSD"/>      <!--Supporting Documents-->
+			<xs:enumeration value="TMWRRES"/>   <!--Written response-->
+			<xs:enumeration value="MARKLOGO"/>  <!--Trade Mark Logo-->
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
+
+

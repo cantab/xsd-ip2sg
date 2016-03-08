@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:include schemaLocation="Common/CommonTypes.xsd" />
+  <xs:include schemaLocation="Common/AddressForService.xsd" />
+  <xs:element name="eFilingApplication" type="TM19" />
+  <xs:complexType name="TM19">
+    <xs:sequence>            
+      <xs:element minOccurs="0" maxOccurs="1" name="ApplicantAgentReference " type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ApplicationNo" type="xs:string" />      
+      <xs:element name="ClassNumbers" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="ClassNo " type="xs:string" />            
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" ref="AddressForService" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="Attachments" />      
+    </xs:sequence>
+    <xs:attribute name="formType" type="formtypeTM19" use="required" />
+  </xs:complexType>
+  <xs:complexType name="Attachments">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="attachment" type="TM19attachment" />
+    </xs:sequence>
+  </xs:complexType>  
+  <xs:complexType name="TM19attachment">
+    <xs:attribute name="Id" type="xs:string" />
+    <xs:attribute name="extension" type="TM19extension" use="required" />
+    <xs:attribute name="doctypecode" type="TM19doctype" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="TM19extension">
+    <xs:restriction base="xs:string">      
+      <xs:enumeration value=".doc" />
+      <xs:enumeration value=".docx" />
+      <xs:enumeration value=".pdf" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TM19doctype">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TMCVL" />      
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="formtypeTM19">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TM19" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:include schemaLocation="CountryOfIncorporation.xsd" />
+  <xs:include schemaLocation="Nationality.xsd" />
+  <xs:include schemaLocation="StatesForUnitedStates.xsd" />
+  
+  <xs:element name="Applicant" type="Applicant" />
+  <xs:complexType name ="Applicant">
+    <xs:sequence>
+
+      <xs:element name="TypeofApplicant" default ="Corporate"  maxOccurs="1" minOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Corporate"/>
+            <xs:enumeration value="Individual"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="UEN" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="Name" type="xs:string" maxOccurs="1" minOccurs="0" />
+
+
+      <xs:element name="IsSME" type="xs:boolean" default="false" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="CountryOfIncorporation" type="CountryOfIncorporation"  maxOccurs="1" minOccurs="0"/>
+      <xs:element name="StateofIncorporation" type="StatesForUnitedStates" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="SoleProprietororPartnersNames"  type="xs:string" maxOccurs="1" minOccurs="0"/>
+
+      <xs:element name="Nationality" type="Nationality" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="CountryofResidence" type="CountryOfIncorporation"  maxOccurs="1" minOccurs="0"/>
+
+
+      <xs:element name="AddressType" default ="Singapore" maxOccurs="1" minOccurs="0">  
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Singapore"/>
+            <xs:enumeration value="ForeignWIPO"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="PostalCode" maxOccurs="1" minOccurs="0" >
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:length value="6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="BlockHouseNo" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="10"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Level" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="UnitNo" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="BuildingName" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="StreetName"  maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="90"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="Address1"  maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="200"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Address2"  maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="200"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="Address3"  maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="200"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

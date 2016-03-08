@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:include schemaLocation="Common/Applicant.xsd" />
+  <xs:include schemaLocation="Common/AddressForService.xsd" />
+  <xs:include schemaLocation="Common/CommonTypes.xsd" />
+  <xs:element name="eFilingApplication" type="PF37" />
+  <xs:complexType name="PF37">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="CustRefNbr" />
+      <xs:element minOccurs="1" maxOccurs="1" name="InternationalApplicationNo">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="Applicant" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InternationalFilingDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EarliestDeclaredPriorityDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InternationalPublicationNo" >
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="EarlyNationalPhaseEntry" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" ref="AddressForService" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="DeclarationName" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="Attachments" />
+    </xs:sequence>
+    <xs:attribute name="formType" type="xs:string" fixed="PF37" use="required" />
+  </xs:complexType>
+  <xs:complexType name="Attachments">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="attachment" type="PF37attachment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PF37attachment">
+    <xs:attribute name="Id" type="xs:string" />
+    <xs:attribute name="extension" type="PF37extension" use="required" />
+    <xs:attribute name="doctypecode" type="PF37doctype" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="PF37extension">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value=".pdf" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PF37doctype">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ABST" />
+      <xs:enumeration value="IA_AMD" />
+      <xs:enumeration value="CVL" />
+      <xs:enumeration value="DWC" />
+      <xs:enumeration value="DRW" />
+      <xs:enumeration value="IA_NE_AMD" />
+      <xs:enumeration value="SD" />
+      <xs:enumeration value="ETVS" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

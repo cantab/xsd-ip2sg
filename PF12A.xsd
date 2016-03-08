@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:include schemaLocation="Common/CommonTypes.xsd" />
+  <xs:include schemaLocation="Common/AddressForService.xsd" />
+  <xs:element name="eFilingApplication" type="PF12A" />
+  <xs:complexType name="PF12A">
+    <xs:sequence>
+		    <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="CustRefNbr" />   
+	      <xs:element minOccurs="1" maxOccurs="1" name="ApplicationNbr" type="ApplnNbr" />  		    
+	      <xs:element minOccurs="0" maxOccurs="1" name="DocumentFurnished" type="DocumentFurnished" />
+        <xs:element minOccurs="0" maxOccurs="1" name="IsCertifiedCopyFiled" type="xs:boolean" />
+        <xs:element minOccurs="0" maxOccurs="1" name="IsClaimsCorresTableFiled" type="xs:boolean" />
+        <xs:element minOccurs="0" maxOccurs="1" name="CorrApplnOrPatentNbr" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="OfficeFiledCode" type="PF12APatentOffice" />
+        <xs:element minOccurs="0" maxOccurs="1" name="IsSpecAmended" type="xs:boolean" />
+        <xs:element minOccurs="0" maxOccurs="1" name="IsPCTArticle19AmendedAtNationalPhase" type="xs:boolean" />
+        <xs:element minOccurs="0" maxOccurs="1" name="IsSpecAmendedAtNationalPhase " type="xs:boolean" />
+	      <xs:element minOccurs="0" maxOccurs="unbounded" name="IPCSymbolCode" type="IPCSymbolCode" />
+        <xs:element minOccurs="1" maxOccurs="1" ref="AddressForService" />
+	      <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="DeclarationName" />    
+        <xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="Attachments" />      
+    </xs:sequence>
+    <xs:attribute name="formType" type="formtypePF12A" use="required" />
+  </xs:complexType>
+  <xs:complexType name="PF12APatentOffice">
+    <xs:sequence>      
+      <xs:element minOccurs="0" maxOccurs="1" name="PF12APatentOffice_sub" type="PatentOffice_sub" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="PatentOffice_sub">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AU">
+        <xs:annotation>
+          <xs:documentation>Australia</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CA">
+        <xs:annotation>
+          <xs:documentation>Canada</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="JP">
+        <xs:annotation>
+          <xs:documentation>Japan</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NZ">
+        <xs:annotation>
+          <xs:documentation>New Zealand</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="KR">
+        <xs:annotation>
+          <xs:documentation>Republic of Korea</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GB">
+        <xs:annotation>
+          <xs:documentation>United Kingdom</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="US">
+        <xs:annotation>
+          <xs:documentation>United States of America</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="EU">
+        <xs:annotation>
+          <xs:documentation>European Patent Office</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PCT">
+        <xs:annotation>
+          <xs:documentation>PCT</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="IPCSymbolCode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="IPCSymbol" type="xs:string" />      
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentFurnished">
+    <xs:sequence>
+      <xs:element name="CORRAPPLN" type="xs:boolean" />            
+      <xs:element name="CHAPI" type="xs:boolean" />      
+      <xs:element name="CHAPII" type="xs:boolean" />      
+    </xs:sequence>
+  </xs:complexType>    
+  <xs:complexType name="Attachments">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="attachment" type="PF12Aattachment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PF12Aattachment">
+    <xs:attribute name="Id" type="xs:string" />
+    <xs:attribute name="extension" type="PF12Aextension" use="required" />
+    <xs:attribute name="doctypecode" type="PF12Adoctype" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="PF12Aextension">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value=".pdf" />
+      <xs:enumeration value=".tiff" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PF12Adoctype">
+    <xs:restriction base="xs:string">
+	    <xs:enumeration value="ALCLM" />
+	    <xs:enumeration value="CLMCT" /> 
+	    <xs:enumeration value="CVL" />
+	    <xs:enumeration value="DDC" />  
+	    <xs:enumeration value="FRNSERT" />
+	    <xs:enumeration value="FRNGRANT" /> 
+		  <xs:enumeration value="IPRPI" />
+	    <xs:enumeration value="IPRPII" />	  
+	    <xs:enumeration value="SD" />
+	    <xs:enumeration value="ETVS" /> 	  
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="formtypePF12A">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PF12A" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

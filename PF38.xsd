@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:include schemaLocation="Common/AddressForService.xsd" />
+  <xs:include schemaLocation="Common/CommonTypes.xsd" />
+  <xs:element name="eFilingApplication" type="PF38" />
+  <xs:complexType name="PF38">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ApplicationNbr" type="ApplnNbr" />
+      <xs:element minOccurs="1" maxOccurs="1" ref="AddressForService" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="DeclarationName" />
+    </xs:sequence>
+    <xs:attribute name="formType" type="formtypePF38" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="formtypePF38">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PF38" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

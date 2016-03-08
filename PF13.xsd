@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:include schemaLocation="Common/Applicant.xsd" />
+  <xs:include schemaLocation="Common/CommonTypes.xsd" />
+  <xs:include schemaLocation="Common/AddressForService.xsd" />
+  <xs:element name="eFilingApplication" type="PF13" />
+  <xs:complexType name="PF13">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="CustRefNbr" />
+	  <xs:element minOccurs="0" maxOccurs="1" name="IposRefNbr" type="xs:string" />
+	  <xs:element minOccurs="1" maxOccurs="1" name="ApplnNo" type="ApplnNbr" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TitleOfInvention" type="TitleOfInvention" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="Applicant" />
+	  <xs:element minOccurs="1" maxOccurs="1" ref="AddressForService" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="Attachments" />
+
+	  <!--<xs:element minOccurs="1" maxOccurs="1" name="FrmMstFK" type="xs:string" />uniqueidentifier-->
+	  <xs:element minOccurs="1" maxOccurs="1" name="AmdReasonTypeCode" type="AmdReasonTypeCode" />
+	  <xs:element minOccurs="1" maxOccurs="1" name="AmdToBeMade" type="xs:string" />
+	  <xs:element minOccurs="1" maxOccurs="1" name="IsAmdToPF1Form" type="xs:boolean" />
+	  <xs:element minOccurs="1" maxOccurs="1" name="AmdDescWithClaimsNbrOfSheets" type="xs:string" />
+	  <xs:element minOccurs="1" maxOccurs="1" name="AmdDescWithoutClaimsNbrOfSheets" type="xs:integer" />
+	  <xs:element minOccurs="1" maxOccurs="1" name="AmdClaimsOnlyNbrOfSheets" type="xs:integer" />
+	  <xs:element minOccurs="1" maxOccurs="1" name="AmdDrawingsNbrOfSheets" type="xs:integer" />
+	  <xs:element minOccurs="1" maxOccurs="1" name="AmdAbstractNbrOfSheets" type="xs:integer" />
+	  <xs:element minOccurs="1" maxOccurs="1" name="Remarks" type="xs:string" />
+	  <!--<xs:element minOccurs="1" maxOccurs="1" name="OldFrmPF1FK" type="xs:string" />uniqueidentifier-->
+	  <xs:element minOccurs="1" maxOccurs="1" name="AmendmentText" type="xs:string" />
+	  <xs:element minOccurs="1" maxOccurs="1" name="IsAspecRequested" type="xs:boolean" />
+    <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="DeclarationName" />
+    </xs:sequence>
+    <xs:attribute name="formType" type="formtype_PF13" use="required" />
+  </xs:complexType>
+  <xs:complexType name="AmdReasonTypeCode">
+    <xs:sequence>
+      <xs:element  name="ResponseToAdverseReport" type="xs:boolean" default="false" />
+      <xs:element  name="ResponseToRegistrarNotification" type="xs:boolean" default="false" />
+      <xs:element  name="VoluntaryAmendment" type="xs:boolean" default="false" />
+      <xs:element  name="ResponseToWrittenOpinion" type="xs:boolean" default="false" />
+    </xs:sequence>
+  </xs:complexType>   
+  <xs:complexType name="Attachments">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="attachment" type="attachment_PF13" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="attachment_PF13">
+    <xs:attribute name="Id" type="xs:string" />
+    <xs:attribute name="extension" type="extension_PF13" use="required" />
+    <xs:attribute name="doctypecode" type="doctype_PF13" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="extension_PF13">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value=".pdf" />
+      <xs:enumeration value=".tiff" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="doctype_PF13">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ACLMO" />
+      <xs:enumeration value="ADRW" />
+      <xs:enumeration value="AABST" />
+	  <xs:enumeration value="SD" />
+	  <xs:enumeration value="ADWOC" />
+	  <xs:enumeration value="ADWC" />
+	  <xs:enumeration value="CVL" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="formtype_PF13">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PF13" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

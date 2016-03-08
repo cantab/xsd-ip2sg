@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:simpleType name="ApplnNbr">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="15" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TitleOfInvention">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="2048" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DeclarationName">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="512" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CustRefNbr">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="100">
+      </xs:maxLength>
+    </xs:restriction>
+  </xs:simpleType>
+   <xs:simpleType name="IPOSRefNbr">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="100">
+      </xs:maxLength>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

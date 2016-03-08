@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:include schemaLocation="Common/Applicant.xsd" />
+  <xs:include schemaLocation="Common/CommonTypes.xsd" />
+  <xs:include schemaLocation="Common/AddressForService.xsd" />
+  <xs:element name="eFilingApplication" type="PF14" />
+  <xs:complexType name="PF14">
+    <xs:sequence>
+	  <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="CustRefNbr" />
+	  <xs:element minOccurs="1" maxOccurs="1" name="ApplnNo" type="ApplnNbr" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TitleOfInvention" type="TitleOfInvention" />
+	  <xs:element minOccurs="0" maxOccurs="unbounded" ref="Applicant" />
+	  <xs:element minOccurs="1" maxOccurs="1" ref="AddressForService" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NumberofClaims" type="xs:integer" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="Attachments" />
+    </xs:sequence>
+    <xs:attribute name="formType" type="formtype_PF14" use="required" />
+  </xs:complexType>
+  <xs:complexType name="Attachments">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="attachment" type="attachment_PF14" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="attachment_PF14">
+    <xs:attribute name="Id" type="xs:string" />
+    <xs:attribute name="extension" type="extension_PF14" use="required" />
+    <xs:attribute name="doctypecode" type="doctype_PF14" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="extension_PF14">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value=".pdf" />
+      <xs:enumeration value=".tiff" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="doctype_PF14">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DWC" />
+      <xs:enumeration value="DRW" />
+      <xs:enumeration value="CVL" />
+	  <xs:enumeration value="SEQLIST" />
+	  <xs:enumeration value="FS(G)" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="formtype_PF14">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PF14" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

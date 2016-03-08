@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:include schemaLocation="Common/CommonTypes.xsd" />
+  <xs:include schemaLocation="Common/AddressForService.xsd" />
+  <xs:element name="eFilingApplication" type="PF11" />
+  <xs:complexType name="PF11">
+    <xs:sequence>
+    <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="CustRefNbr" /> 	    
+		<xs:element minOccurs="1" maxOccurs="1" name="ApplicationNbr" type="ApplnNbr" />		   
+	  <xs:element minOccurs="0" maxOccurs="1" name="IsASPEC" type="xs:boolean" />
+		<xs:element minOccurs="1" maxOccurs="1" ref="AddressForService" /> 
+	  <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="DeclarationName" />    
+		<xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="Attachments" />
+    </xs:sequence>
+    <xs:attribute name="formType" type="formtypePF11" use="required" />
+  </xs:complexType>    
+  <xs:complexType name="Attachments">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="attachment" type="PF11attachment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PF11attachment">
+    <xs:attribute name="Id" type="xs:string" />
+    <xs:attribute name="extension" type="PF11extension" use="required" />
+    <xs:attribute name="doctypecode" type="PF11doctype" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="PF11extension">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value=".pdf" />
+      <xs:enumeration value=".tiff" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PF11doctype">
+    <xs:restriction base="xs:string">      
+	    <xs:enumeration value="CVL" />
+      <xs:enumeration value="SD" />      
+      <xs:enumeration value="IPRPI" />
+	    <xs:enumeration value="IPRPII" />
+	    <xs:enumeration value="ETVS" />
+      <xs:enumeration value="ASPECCDC"/>
+      <xs:enumeration value="ASPECCLMCT"/>
+      <xs:enumeration value="ASPECFRM"/>
+      <xs:enumeration value="ASPECSERT"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="formtypePF11">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PF11" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

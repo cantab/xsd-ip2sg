@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ip2sg" xmlns="http://ip2sg">
+  <xs:include schemaLocation="Common/Applicant.xsd" />
+  <xs:include schemaLocation="Common/AddressForService.xsd" />
+  <xs:include schemaLocation="Common/CountryTMPriority.xsd" />
+  <xs:element name="eFilingApplication" type="TM4" />
+  <xs:complexType name="TM4">
+    <xs:sequence>
+      <xs:element name="ApplicantReferenceNo" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="MarkType" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Trade Mark"/>
+            <xs:enumeration value="Collective Mark"/>
+            <xs:enumeration value="Certification Mark"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="Applicant" />      
+      <xs:element name="DeviceDescription" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="NoOfMarksInSeries" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="NonConventionTradeMark" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ThreeDimensionalShape" type="xs:boolean"></xs:element>
+            <xs:element name="AspectOfPackaging" type="xs:boolean"></xs:element>
+            <xs:element name="ColourAsATradeMark" type="xs:boolean"></xs:element>
+            <xs:element name="SoundMark" type="xs:boolean"></xs:element>
+            <xs:element name="MovementMark" type="xs:boolean"></xs:element>
+            <xs:element name="HologramMark" type="xs:boolean"></xs:element>
+            <xs:element name="OtherNonConvMark" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
+            <xs:element name="DescriptionOfClaimNonConvTM" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DisclaimerLimitation" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="255"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="DerivationOfWord" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="255"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="TranslationTransliteration" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="IsRomanised" minOccurs="0" maxOccurs="1" type="xs:boolean"></xs:element>
+            <xs:element name="TranslationLanguageCodeRomanised" minOccurs="0" maxOccurs="1" type="IsRomanised"></xs:element>
+            <xs:element name="TranslationLanguageCodeNonRomanised" minOccurs="0" maxOccurs="1" type="NonRomanised"></xs:element>
+            <xs:element name="OtherLanguage" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
+            <xs:element name="TranslationText" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
+            <xs:element name="Transliteration" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
+            <xs:element name="HasMeaning" minOccurs="0" maxOccurs="1" type="xs:boolean"></xs:element>
+            <xs:element name="EnglishTranslation" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" ref="AddressForService" />
+      <xs:element name="SpecificationOfGoodsServices" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ClassNo">
+              <xs:simpleType>
+                <xs:restriction base="xs:integer">
+                  <xs:minInclusive value="1"/>
+                  <xs:maxInclusive value="45"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="GoodsServices" type="xs:string"></xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PriorityClaim" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ClassNo">
+              <xs:simpleType>
+                <xs:restriction base="xs:integer">
+                  <xs:minInclusive value="1"/>
+                  <xs:maxInclusive value="45"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="Country" type="TMPriorityCountry" minOccurs="0" maxOccurs="1" />
+            <xs:element name="PriorityDate" type="xs:date"/>
+            <xs:element name="AllGoodsServicesClaimed" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:length value="1"/>
+                  <xs:enumeration value="Y"/>
+                  <xs:enumeration value="N"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="GoodsServicesClaimed" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="15000"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="DeclarationName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="TM4Attachments"/>
+    </xs:sequence>
+    <xs:attribute name="formType" type="xs:string" fixed="TM4" use="required"  />
+  </xs:complexType>
+  <xs:simpleType name="NonRomanised">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Arabic"/>
+      <xs:enumeration value="Greek"/>
+      <xs:enumeration value="French"/>
+      <xs:enumeration value="Japanese"/>
+      <xs:enumeration value="Korean"/>
+      <xs:enumeration value="Others"/>
+      <xs:enumeration value="Russian"/>
+      <xs:enumeration value="Tamil"/>
+      <xs:enumeration value="Thai"/>
+      <xs:enumeration value="Chinese"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="IsRomanised">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Danish"/>
+      <xs:enumeration value="German"/>
+      <xs:enumeration value="Spanish"/>
+      <xs:enumeration value="Finnish"/>
+      <xs:enumeration value="Filipino"/>
+      <xs:enumeration value="French"/>
+      <xs:enumeration value="Irish"/>
+      <xs:enumeration value="Indonesian"/>
+      <xs:enumeration value="Italian"/>
+      <xs:enumeration value="Malay"/>
+      <xs:enumeration value="Dutch"/>
+      <xs:enumeration value="Norwegian"/>
+      <xs:enumeration value="Others"/>
+      <xs:enumeration value="Polish"/>
+      <xs:enumeration value="Portuguese"/>
+      <xs:enumeration value="Swedish"/>
+      <xs:enumeration value="Vietnamese"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="TM4Attachments">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="attachment" type="TM4Attachment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TM4Attachment">
+    <xs:attribute name="Id" type="xs:string" />
+    <xs:attribute name="extension" type="TM4AttachmentExtension" use="required" />
+    <xs:attribute name="doctypecode" type="TM4AttachmentTypes" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="TM4AttachmentExtension">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value=".bmp"></xs:enumeration>
+      <xs:enumeration value=".jpg"></xs:enumeration>
+      <xs:enumeration value=".tiff"></xs:enumeration>
+      <xs:enumeration value=".tif"></xs:enumeration>
+      <xs:enumeration value=".jpeg"></xs:enumeration>      
+      <xs:enumeration value=".avi"></xs:enumeration>
+      <xs:enumeration value=".mp4"></xs:enumeration>
+      <xs:enumeration value=".gif"></xs:enumeration>
+      <xs:enumeration value=".wmv"></xs:enumeration>
+      <xs:enumeration value=".mpeg"></xs:enumeration>
+      <xs:enumeration value=".wav"></xs:enumeration>
+      <xs:enumeration value=".mp3"></xs:enumeration>
+      <xs:enumeration value=".pdf"></xs:enumeration>
+      <xs:enumeration value=".doc"></xs:enumeration>
+      <xs:enumeration value=".docx"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TM4AttachmentTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MarkLogo"></xs:enumeration><!-- TM4 Logo [Part4A]-->
+      <xs:enumeration value="NONCON_MP"></xs:enumeration> <!--  Movement Mark [Part4D]-->
+      <xs:enumeration value="NONCON_HO"></xs:enumeration> <!-- Hologram Mark [Part4D]-->
+      <xs:enumeration value="NONCON_SO"></xs:enumeration> <!-- Sound Mark [Part4D]-->
+      <xs:enumeration value="TMTRANS"></xs:enumeration> <!-- Certified Translation  Transliteration [Part4G]-->
+      <xs:enumeration value="TMCVL"></xs:enumeration> <!-- Cover Letter [PART 9]-->
+      <xs:enumeration value="TMSDOCD"></xs:enumeration> <!-- Documents to overcome citation [PART 9]-->
+      <xs:enumeration value="TMSD"></xs:enumeration> <!--Supporting Documents [PART 9]-->
+      <xs:enumeration value="OTHERS"></xs:enumeration> <!-- Others [PART 9]-->      
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
