@@ -7,7 +7,7 @@
   <xs:complexType name="PF37">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="CustRefNbr" />
-      <xs:element minOccurs="1" maxOccurs="1" name="InternationalApplicationNo">
+      <xs:element minOccurs="1" maxOccurs="1" name="ApplnNo">
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:maxLength value="20"/>

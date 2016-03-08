@@ -6,7 +6,7 @@
   <xs:complexType name="PF12A">
     <xs:sequence>
 		    <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="CustRefNbr" />   
-	      <xs:element minOccurs="1" maxOccurs="1" name="ApplicationNbr" type="ApplnNbr" />  		    
+	      <xs:element minOccurs="1" maxOccurs="1" name="ApplnNo" type="ApplnNbr" />  		    
 	      <xs:element minOccurs="0" maxOccurs="1" name="DocumentFurnished" type="DocumentFurnished" />
         <xs:element minOccurs="0" maxOccurs="1" name="IsCertifiedCopyFiled" type="xs:boolean" />
         <xs:element minOccurs="0" maxOccurs="1" name="IsClaimsCorresTableFiled" type="xs:boolean" />

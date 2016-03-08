@@ -10,7 +10,7 @@
       <!-- <xs:element minOccurs="0" maxOccurs="1" name="IPOSRefNbr" type="IPOSRefNbr" /> -->
       <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="CustRefNbr" />
       <!-- Part 2 Application No-->
-      <xs:element minOccurs="1" maxOccurs="50" name="ApplicationNo">
+      <xs:element minOccurs="1" maxOccurs="50" name="ApplnNo">
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:maxLength value="15"/>

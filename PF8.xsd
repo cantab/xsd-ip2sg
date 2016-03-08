@@ -13,7 +13,7 @@
   <xs:complexType name="PF8">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="CustRefNbr"></xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="ApplnNbrEfileRefNbr" type="ApplnNbr"></xs:element>      
+      <xs:element minOccurs="1" maxOccurs="1" name="ApplnNo" type="ApplnNbr"></xs:element>      
       <xs:element minOccurs="1" maxOccurs="unbounded" name="DetailsOfInventor" type="DetailsOfInventor"></xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="DerivedRightApplication" type="DerivedRightApplication"></xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="DerivedRightOtherDesc">

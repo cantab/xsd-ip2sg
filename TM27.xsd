@@ -8,8 +8,8 @@
 	</xs:annotation>
 	<xs:complexType name="TM27">
 		<xs:sequence>
-			<xs:element name="ApplicantReferenceNo" minOccurs="0" maxOccurs="1" type="xs:string"/>
-			<xs:element name="ApplicationNo" minOccurs="0" maxOccurs="5" type="xs:string" />
+			<xs:element name="CustRefNbr" minOccurs="0" maxOccurs="1" type="xs:string"/>
+			<xs:element name="ApplnNo" minOccurs="0" maxOccurs="5" type="xs:string" />
 			<xs:element name="SpecificationOfGoodsServices" minOccurs="0" maxOccurs="unbounded">
 				<xs:complexType>
 					<xs:sequence>

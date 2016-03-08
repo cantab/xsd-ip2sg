@@ -26,7 +26,7 @@
 	  <xs:element minOccurs="1" maxOccurs="1" name="Remarks" type="xs:string" />
 	  <!--<xs:element minOccurs="1" maxOccurs="1" name="OldFrmPF1FK" type="xs:string" />uniqueidentifier-->
 	  <xs:element minOccurs="1" maxOccurs="1" name="AmendmentText" type="xs:string" />
-	  <xs:element minOccurs="1" maxOccurs="1" name="IsAspecRequested" type="xs:boolean" />
+	  <xs:element minOccurs="1" maxOccurs="1" name="IsASPEC" type="xs:boolean" />
     <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="DeclarationName" />
     </xs:sequence>
     <xs:attribute name="formType" type="formtype_PF13" use="required" />

@@ -5,9 +5,9 @@
   <xs:element name="eFilingApplication" type="TM19" />
   <xs:complexType name="TM19">
     <xs:sequence>            
-      <xs:element minOccurs="0" maxOccurs="1" name="ApplicantAgentReference " type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="ApplicationNo" type="xs:string" />      
-      <xs:element name="ClassNumbers" minOccurs="0" maxOccurs="1">
+      <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ApplnNo" type="xs:string" />      
+      <xs:element name="ClassNo" minOccurs="0" maxOccurs="1">
         <xs:complexType>
           <xs:sequence>
             <xs:element minOccurs="0" maxOccurs="unbounded" name="ClassNo " type="xs:string" />            
