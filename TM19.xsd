@@ -32,9 +32,10 @@
   </xs:complexType>
   <xs:simpleType name="TM19extension">
     <xs:restriction base="xs:string">      
+      <!--We are handling the doc Type extension validation in ValidateAttachments Method
       <xs:enumeration value=".doc" />
       <xs:enumeration value=".docx" />
-      <xs:enumeration value=".pdf" />
+      <xs:enumeration value=".pdf" />-->
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="TM19doctype">

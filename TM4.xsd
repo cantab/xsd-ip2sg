@@ -161,6 +161,7 @@
   </xs:complexType>
   <xs:simpleType name="TM4AttachmentExtension">
     <xs:restriction base="xs:string">
+      <!--We are handling the doc Type extension validation in ValidateAttachments Method
       <xs:enumeration value=".bmp"></xs:enumeration>
       <xs:enumeration value=".jpg"></xs:enumeration>
       <xs:enumeration value=".tiff"></xs:enumeration>
@@ -175,7 +176,7 @@
       <xs:enumeration value=".mp3"></xs:enumeration>
       <xs:enumeration value=".pdf"></xs:enumeration>
       <xs:enumeration value=".doc"></xs:enumeration>
-      <xs:enumeration value=".docx"></xs:enumeration>
+      <xs:enumeration value=".docx"></xs:enumeration>-->
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="TM4AttachmentTypes">

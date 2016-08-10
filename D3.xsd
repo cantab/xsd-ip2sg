@@ -54,7 +54,7 @@
         </xs:simpleType>
       </xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="DisclosureDate" type="xs:date" />
-      <xs:element minOccurs="0" maxOccurs="1" name="RequestForDeferment" type="xs:boolean" />      
+      <xs:element minOccurs="0" maxOccurs="1" name="RequestForDeferment" type="xs:boolean" />
       <xs:element minOccurs="0" maxOccurs="1" ref="AddressForService" />
       <xs:element minOccurs="0" maxOccurs="1" name="DeclarationName" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="Attachments" />
@@ -110,14 +110,14 @@
       <xs:element minOccurs="1" maxOccurs="1" name="Disclosure81b" type="xs:boolean" />
       <xs:element minOccurs="1" maxOccurs="1" name="Disclosure81c" type="xs:boolean" />
       <xs:element minOccurs="1" maxOccurs="1" name="Disclosure81d" type="xs:boolean" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Disclosure82" type="xs:boolean" />      
+      <xs:element minOccurs="1" maxOccurs="1" name="Disclosure82" type="xs:boolean" />
     </xs:sequence>
-  </xs:complexType>  
+  </xs:complexType>
   <xs:simpleType name="formtypeD3">
     <xs:restriction base="xs:string">
       <xs:enumeration value="D3" />
     </xs:restriction>
-  </xs:simpleType>  
+  </xs:simpleType>
   <xs:complexType name="Attachments">
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="unbounded" name="attachment" type="attachmentD3" />
@@ -130,9 +130,11 @@
   </xs:complexType>
   <xs:simpleType name="extensionD3">
     <xs:restriction base="xs:string">
+      <!-- We are handling the doc Type extension validation in ValidateAttachments Method
       <xs:enumeration value=".pdf" />
       <xs:enumeration value=".jpg" />
       <xs:enumeration value=".jpeg" />
+      -->
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="doctypeD3">

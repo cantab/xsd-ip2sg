@@ -43,7 +43,8 @@
   </xs:complexType>
   <xs:simpleType name="PF37extension">
     <xs:restriction base="xs:string">
-      <xs:enumeration value=".pdf" />
+      <!--We are handling the doc Type extension validation in ValidateAttachments Method
+      <xs:enumeration value=".pdf" />-->
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="PF37doctype">

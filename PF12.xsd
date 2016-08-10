@@ -94,8 +94,7 @@
 	</xs:complexType>
 	<xs:simpleType name="extension_pf12">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value=".pdf" />
-			<xs:enumeration value=".tiff" />
+			
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="doctype_pf12">

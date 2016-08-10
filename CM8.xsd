@@ -123,6 +123,7 @@
   </xs:complexType>
   <xs:simpleType name="CM8extension">
     <xs:restriction base="xs:string">
+      <!-- We are handling the doc Type extension validation in ValidateAttachments Method
       <xs:enumeration value=".avi" />
       <xs:enumeration value=".bmp" />
       <xs:enumeration value=".doc" />
@@ -135,7 +136,7 @@
       <xs:enumeration value=".pdf" />
       <xs:enumeration value=".tiff" />
       <xs:enumeration value=".wav" />
-      <xs:enumeration value=".wmv" />
+      <xs:enumeration value=".wmv" />-->
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="CM8doctype">

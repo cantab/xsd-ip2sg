@@ -26,8 +26,9 @@
   </xs:complexType>
   <xs:simpleType name="PF11extension">
     <xs:restriction base="xs:string">
+      <!--We are handling the doc Type extension validation in ValidateAttachments Method
       <xs:enumeration value=".pdf" />
-      <xs:enumeration value=".tiff" />
+      <xs:enumeration value=".tiff" />-->
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="PF11doctype">
