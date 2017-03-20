@@ -7,6 +7,8 @@
     <xs:sequence>
     <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="CustRefNbr" /> 	    
 		<xs:element minOccurs="1" maxOccurs="1" name="ApplnNo" type="ApplnNbr" />		   
+    <xs:element minOccurs="0" maxOccurs="1" name="IsISRIPRP" type="xs:boolean" />
+    <xs:element minOccurs="0" maxOccurs="1" name="NumberofClaims" type="xs:integer" />
 	  <xs:element minOccurs="0" maxOccurs="1" name="IsASPEC" type="xs:boolean" />
 		<xs:element minOccurs="1" maxOccurs="1" ref="AddressForService" /> 
 	  <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="DeclarationName" />    

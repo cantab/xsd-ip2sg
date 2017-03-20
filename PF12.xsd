@@ -9,6 +9,7 @@
 			<xs:element minOccurs="0" maxOccurs="1" name="TitleOfInvention" type="xs:string" />
 			<xs:element minOccurs="0" maxOccurs="1" name="RequestType" type="RequestType" />
 			<xs:element minOccurs="0" maxOccurs="1" name="PatentOffice" type="PatentOffice" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NumberofClaims" type="xs:integer" />
 			<xs:element minOccurs="1" maxOccurs="1" name="IsASPEC" type="xs:boolean" />
 			<xs:element minOccurs="1" maxOccurs="1" ref="AddressForService" />
 			<xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="xs:string" />
