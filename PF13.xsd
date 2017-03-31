@@ -37,6 +37,7 @@
       <xs:element  name="ResponseToRegistrarNotification" type="xs:boolean" default="false" />
       <xs:element  name="VoluntaryAmendment" type="xs:boolean" default="false" />
       <xs:element  name="ResponseToWrittenOpinion" type="xs:boolean" default="false" />
+      <xs:element  name="Rule476" type="xs:boolean" default="false" />
     </xs:sequence>
   </xs:complexType>   
   <xs:complexType name="Attachments">
@@ -59,12 +60,17 @@
   <xs:simpleType name="doctype_PF13">
     <xs:restriction base="xs:string">
       <xs:enumeration value="ACLMO" />
+      <xs:enumeration value="ACLMOM" />
       <xs:enumeration value="ADRW" />
+      <xs:enumeration value="ADRWM" />
       <xs:enumeration value="AABST" />
-	  <xs:enumeration value="SD" />
-	  <xs:enumeration value="ADWOC" />
-	  <xs:enumeration value="ADWC" />
-	  <xs:enumeration value="CVL" />
+      <xs:enumeration value="AABSTM" />
+      <xs:enumeration value="SD" />
+      <xs:enumeration value="ADWOC" />
+      <xs:enumeration value="ADWOCM" />
+      <xs:enumeration value="ADWC" />
+      <xs:enumeration value="ADWCM" />
+      <xs:enumeration value="CVL" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="formtype_PF13">
