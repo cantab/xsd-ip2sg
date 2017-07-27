@@ -19,6 +19,7 @@
     <xs:element minOccurs="1" maxOccurs="1" name="IsAmdToTitleOfInvention" type="xs:boolean" />
 	  <xs:element minOccurs="1" maxOccurs="1" name="IsAmdToPF1Form" type="xs:boolean" />
 	  <xs:element minOccurs="1" maxOccurs="1" name="AmdTitleOfInvention" type="xs:string" />
+    <xs:element minOccurs="1" maxOccurs="1" name="Remarks" type="xs:string" />
 	  <!--<xs:element minOccurs="1" maxOccurs="1" name="OldFrmPF1FK" type="xs:string" />uniqueidentifier-->
 	  <xs:element minOccurs="1" maxOccurs="1" name="IsASPEC" type="xs:boolean" />
     <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="DeclarationName" />
