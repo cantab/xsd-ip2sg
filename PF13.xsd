@@ -16,16 +16,10 @@
 
 	  <!--<xs:element minOccurs="1" maxOccurs="1" name="FrmMstFK" type="xs:string" />uniqueidentifier-->
 	  <xs:element minOccurs="1" maxOccurs="1" name="AmdReasonTypeCode" type="AmdReasonTypeCode" />
-	  <xs:element minOccurs="1" maxOccurs="1" name="AmdToBeMade" type="xs:string" />
+    <xs:element minOccurs="1" maxOccurs="1" name="IsAmdToTitleOfInvention" type="xs:boolean" />
 	  <xs:element minOccurs="1" maxOccurs="1" name="IsAmdToPF1Form" type="xs:boolean" />
-	  <xs:element minOccurs="1" maxOccurs="1" name="AmdDescWithClaimsNbrOfSheets" type="xs:string" />
-	  <xs:element minOccurs="1" maxOccurs="1" name="AmdDescWithoutClaimsNbrOfSheets" type="xs:integer" />
-	  <xs:element minOccurs="1" maxOccurs="1" name="AmdClaimsOnlyNbrOfSheets" type="xs:integer" />
-	  <xs:element minOccurs="1" maxOccurs="1" name="AmdDrawingsNbrOfSheets" type="xs:integer" />
-	  <xs:element minOccurs="1" maxOccurs="1" name="AmdAbstractNbrOfSheets" type="xs:integer" />
-	  <xs:element minOccurs="1" maxOccurs="1" name="Remarks" type="xs:string" />
+	  <xs:element minOccurs="1" maxOccurs="1" name="AmdTitleOfInvention" type="xs:string" />
 	  <!--<xs:element minOccurs="1" maxOccurs="1" name="OldFrmPF1FK" type="xs:string" />uniqueidentifier-->
-	  <xs:element minOccurs="1" maxOccurs="1" name="AmendmentText" type="xs:string" />
 	  <xs:element minOccurs="1" maxOccurs="1" name="IsASPEC" type="xs:boolean" />
     <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="DeclarationName" />
     </xs:sequence>
