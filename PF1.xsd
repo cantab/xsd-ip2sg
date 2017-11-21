@@ -4,6 +4,8 @@
   <xs:include schemaLocation="Common/AddressForService.xsd" />
   <xs:include schemaLocation="Common/CommonTypes.xsd" />
   <xs:include schemaLocation="Common/CountryPTPriority.xsd" />
+  <xs:include schemaLocation="Common/CountryCodes.xsd" />
+  <xs:include schemaLocation="Common/Nationality_pf1.xsd" />
   <xs:element name="eFilingApplication" type="PF1" />
   <xs:complexType name="PF1">
     <xs:sequence>
@@ -17,6 +19,9 @@
       <xs:element minOccurs="0" maxOccurs="1" name="DisclosureofInvention" type="xs:boolean" />
       <xs:element minOccurs="0" maxOccurs="1" name="MicroOrganism" type="xs:boolean" />
       <xs:element minOccurs="0" maxOccurs="1" name="EarlierRelevantApplication" type="DeclarationOfPriority" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PF1DetailsOfInventor" type="PF1DetailsOfInventor" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PF1DerivedRightApplication" type="PF1DerivedRightApplication" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DerivedRightOtherDesc" type="DerivedRightOtherDesc" />
       <xs:element minOccurs="1" maxOccurs="1" ref="AddressForService" />
       <xs:element minOccurs="1" maxOccurs="1" name="DeclarationName" type="DeclarationName" />
       <xs:element minOccurs="0" maxOccurs="1" name="ChecklistA" type="ChecklistA" />
@@ -27,7 +32,7 @@
   </xs:complexType>
   <xs:complexType name="DeclarationOfPriority">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="application" type="ApplnNbr" />
+      <xs:element minOccurs="0" maxOccurs="1" name="application" type="DeclApplnNbr" />
       <xs:element minOccurs="1" maxOccurs="1" name="filingdate" type="xs:date" />
       <xs:element minOccurs="1" maxOccurs="1" name="country" type="PTPriorityCountry" />
     </xs:sequence>
@@ -44,11 +49,25 @@
       <xs:element minOccurs="1" maxOccurs="1" name="filingdate" type="xs:date" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="PF1DerivedRightApplication">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="contract" default="false" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="assignment" default="false" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="others" default="false" type="xs:boolean"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="DerivedRightOtherDesc">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="1024">
+      </xs:maxLength>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="ChecklistA">
     <xs:attribute name="Description" type="xs:int" />
     <xs:attribute name="Claims" type="xs:int" />
     <xs:attribute name="Drawings" type="xs:int" />
     <xs:attribute name="Abstracts" type="xs:int" />
+    <xs:attribute name="SequentialListing" type="xs:int" />
   </xs:complexType>
   <xs:complexType name="ChecklistB">
     <xs:attribute name="StatementOfInventorship" type="xs:boolean" />
@@ -78,6 +97,104 @@
       <xs:enumeration value="CVL"/>
       <xs:enumeration value="DRW" />
       <xs:enumeration value="DWC" />
+      <xs:enumeration value="SEQLIST" />
    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="PF1DetailsOfInventor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="UEN" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="address_pf1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Citizenship" type="Nationality_pf1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Country" type="CountryCode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IsSgResident" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="address_pf1">
+    <xs:sequence>
+      <xs:element name="AddressType" default ="Singapore" maxOccurs="1" minOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Singapore"/>
+            <xs:enumeration value="ForeignWIPO"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CareOf" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="256"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="PostalCode" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="BlockHouseNo" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="10"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Level" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="UnitNo" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="BuildingName" maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="StreetName"  maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="90"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Address1"  maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="200"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Address2"  maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="200"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Address3"  maxOccurs="1" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="200"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="DeclApplnNbr">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="20" />
+    </xs:restriction>
   </xs:simpleType>
 </xs:schema>

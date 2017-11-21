@@ -18,6 +18,8 @@
         </xs:simpleType>
       </xs:element>
       <!-- Part 3 Not necessary because it is auto populating-->
+      <!-- Part 3B Details of Requestor-->
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RequestorApplicantProprietor" type="Applicant" />
       <!-- Part 4 Full or Partial Transfer-->
       <xs:element minOccurs="0" maxOccurs="1" name="IsFullTransferForTradeMarkIP" type="xs:boolean"/>
       <!-- Part 5 Details of Current Applicant Proprietor -->
@@ -67,13 +69,14 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="AddressForServiceForPart9" type="AddressForService" />
       <xs:element minOccurs="0" maxOccurs="1" name="AddressForServiceForPart13" type="AddressForService" />
-      <!-- Part 10 should not be part of XML as it might required Sing Pass validation-->
-      <!-- Part 11 Declaration -->
+      <!-- Part 10 should not be part of XML as it might required Sing Pass validation-->      
+      <!-- Part 11 Person making the request -->
       <xs:element name="RequestorType">
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="Current Proprietor" />
             <xs:enumeration value="Subsequent Proprietor" />
+            <xs:enumeration value="Requestor" />
           </xs:restriction>
         </xs:simpleType>
       </xs:element>

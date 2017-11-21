@@ -116,7 +116,6 @@
   </xs:complexType>
   <xs:simpleType name="NonRomanised">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Arabic"/>
       <xs:enumeration value="Greek"/>
       <xs:enumeration value="French"/>
       <xs:enumeration value="Japanese"/>
