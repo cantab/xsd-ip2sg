@@ -5,16 +5,29 @@
   <xs:include schemaLocation="Common/CommonTypes.xsd" />
   <xs:include schemaLocation="Common/CountryDSPriority.xsd" />
   <xs:element name="eFilingApplication" type="D3" />
+  <!--Common Details-->
   <xs:complexType name="D3">
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="unbounded" ref="Applicant" />
       <xs:element minOccurs="0" maxOccurs="1" name="CustRefNbr" type="CustRefNbr" />
-      <xs:element minOccurs="0" maxOccurs="1" name="IRNbr" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="IRDate" type="xs:date" />
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClassSubClass" type="ClassSubClass" />
-      <xs:element minOccurs="0" maxOccurs="1" name="SetOfArticles" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EFileRefNbr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IPOSRefNbr" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="unbounded" ref="Applicant" />
+      <xs:element minOccurs="1" maxOccurs="50" name="DesignDetails" type="DesignDetails"></xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" ref="AddressForService" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DeclarationName" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="formType" type="formtypeD3" use="required" />
+  </xs:complexType>
+
+  <!--Design Details-->
+  <xs:complexType name ="DesignDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="SetOfArticlesOrNonPhysicalProducts" type="xs:boolean" />
       <xs:element minOccurs="0" maxOccurs="1" name="NoOfArticles" type="xs:int" />
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ArticleName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NoOfNonPhysicalProducts" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NonPhysicalProducts" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClassSubClass" type="ClassSubClass" />
       <xs:element minOccurs="0" maxOccurs="1" name="ApplicantRights" type="ApplicantRights" />
       <xs:element minOccurs="0" maxOccurs="1" name="ApplicantRightsOthersDesc">
         <xs:simpleType>
@@ -55,35 +68,40 @@
       </xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="DisclosureDate" type="xs:date" />
       <xs:element minOccurs="0" maxOccurs="1" name="RequestForDeferment" type="xs:boolean" />
-      <xs:element minOccurs="0" maxOccurs="1" ref="AddressForService" />
-      <xs:element minOccurs="0" maxOccurs="1" name="DeclarationName" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="Attachments" />
-    </xs:sequence>
-    <xs:attribute name="formType" type="formtypeD3" use="required" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="Attachments" />           
+    </xs:sequence>    
   </xs:complexType>
+
+  <!--Classification-->
   <xs:complexType name="ClassSubClass">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="class" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="subclass" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
+
+  <!--ApplicantRights-->
   <xs:complexType name="ApplicantRights">
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="ApplicantCommissioned" type="xs:boolean" />
       <xs:element minOccurs="1" maxOccurs="1" name="ApplicantDesigner" type="xs:boolean" />
       <xs:element minOccurs="1" maxOccurs="1" name="VirtueAssignment" type="xs:boolean" />
       <xs:element minOccurs="1" maxOccurs="1" name="VirtueEmployment" type="xs:boolean" />
       <xs:element minOccurs="1" maxOccurs="1" name="ApplicantOthers" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
+
+  <!--Novelty-->
   <xs:complexType name="Novelty">
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="Novelty" type="xs:boolean" />
       <xs:element minOccurs="1" maxOccurs="1" name="Shape" type="xs:boolean" />
       <xs:element minOccurs="1" maxOccurs="1" name="Pattern" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Colours" type="xs:boolean" />
       <xs:element minOccurs="1" maxOccurs="1" name="NoveltyOthers" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
+
+  <!--Disclaimer-->
   <xs:complexType name="Disclaimer">
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="NoClaim" type="xs:boolean" />
@@ -98,36 +116,57 @@
       <xs:element minOccurs="1" maxOccurs="1" name="DisclaimerOthers" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
+
+  <!--PriorityClaim-->
   <xs:complexType name="PriorityClaim">
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="PriorityCountryCode" type="DSPriorityCountry" />
       <xs:element minOccurs="1" maxOccurs="1" name="PriorityDate" type="xs:date" />
     </xs:sequence>
   </xs:complexType>
+
+  <!--Disclosure-->
   <xs:complexType name="Disclosure">
     <xs:sequence>
+      <!--Following items will apply for disclosures that take place before the effective date (30/Oct/2017) of the Designs changes.-->
       <xs:element minOccurs="1" maxOccurs="1" name="Disclosure81a" type="xs:boolean" />
       <xs:element minOccurs="1" maxOccurs="1" name="Disclosure81b" type="xs:boolean" />
       <xs:element minOccurs="1" maxOccurs="1" name="Disclosure81c" type="xs:boolean" />
       <xs:element minOccurs="1" maxOccurs="1" name="Disclosure81d" type="xs:boolean" />
       <xs:element minOccurs="1" maxOccurs="1" name="Disclosure82" type="xs:boolean" />
+
+      <!--Following items will apply for disclosures that take place on or after the effective date (30/Oct/2017) of the Designs changes.-->
+      <xs:element minOccurs="1" maxOccurs="1" name="Disclosure8A1a" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Disclosure8B1b" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Disclosure8C1c" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Disclosure8D1d" type="xs:boolean" />
+
+      <!--Apply for disclosures that take place before the filing date of the Form D3, if the Form D3 is filed within 12 months -->
+      <!--after the effective date (30/Oct/2017)  of the Designs changes.-->
+      <xs:element minOccurs="1" maxOccurs="1" name="Disclosure8B" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
+  
   <xs:simpleType name="formtypeD3">
     <xs:restriction base="xs:string">
       <xs:enumeration value="D3" />
     </xs:restriction>
   </xs:simpleType>
+
+  <!--Attachments-->
   <xs:complexType name="Attachments">
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="unbounded" name="attachment" type="attachmentD3" />
     </xs:sequence>
   </xs:complexType>
+  
   <xs:complexType name="attachmentD3">
     <xs:attribute name="Id" type="xs:string" />
     <xs:attribute name="extension" type="extensionD3" use="required" />
     <xs:attribute name="doctypecode" type="doctypeD3" use="required" />
+    <xs:attribute name="IsDefault" type="xs:boolean" use="required" />
   </xs:complexType>
+  
   <xs:simpleType name="extensionD3">
     <xs:restriction base="xs:string">
       <!-- We are handling the doc Type extension validation in ValidateAttachments Method
@@ -137,6 +176,7 @@
       -->
     </xs:restriction>
   </xs:simpleType>
+  
   <xs:simpleType name="doctypeD3">
     <xs:restriction base="xs:string">
       <xs:enumeration value="RDCVL"/>
