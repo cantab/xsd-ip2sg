@@ -67,7 +67,7 @@
     <xs:attribute name="Claims" type="xs:int" />
     <xs:attribute name="Drawings" type="xs:int" />
     <xs:attribute name="Abstracts" type="xs:int" />
-    <xs:attribute name="SequentialListing" type="xs:int" />
+    <xs:attribute name="SequenceListing" type="xs:int" />
   </xs:complexType>
   <xs:complexType name="ChecklistB">
     <xs:attribute name="StatementOfInventorship" type="xs:boolean" />
