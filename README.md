@@ -9,7 +9,7 @@ In order to be processed by the batch upload function, the form and any attachme
 
 This repository contains the XSD files describing the structure of the XML in the forms need to create .frmx packages.
 
-##Frmx OPC File Format
+## Frmx OPC File Format
 
 An OPC package contains one or more folders. Each folder represents one IP2SG form and any attachments associated with the form.
 
